@@ -3,15 +3,19 @@ import { DeleteUserService } from '../service/DeleteUserService'
 
 class DeleteUserController {
     async handle (req:Request, res:Response) {
-        const { id, password } = req.body
+        const userId = req.userId
+        const { password } = req.body
+
+        console.log(userId + " >> " + password)
+        
 
         const deleteUserService = new DeleteUserService()
 
-        const deletedUser = await deleteUserService.execute(id, password)
+        const deletedUser = await deleteUserService.execute(userId, password)
 
         return res.status(200).json({
             status: 'Deleted',
-            id,
+            userId,
             username: deletedUser.username
         })
     }
