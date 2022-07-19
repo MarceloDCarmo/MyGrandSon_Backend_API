@@ -16,7 +16,7 @@ export class AuthenticateService {
             throw new Error("Wrong username or password");
         }
 
-        const isPasswordValid = compare(password, user.password)
+        const isPasswordValid = await compare(password, user.password)
 
         if(!isPasswordValid){
             throw new Error("Wrong username or password");
