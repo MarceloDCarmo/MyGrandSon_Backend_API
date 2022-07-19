@@ -7,28 +7,28 @@ API to Serve the app MyGrandSon.
 ##### Create User
 - **.../users - POST**
     >{  
-        "username": string,
+        "username": string,  
 	    "password": string  
     }
 
 ##### Delete User (authenticate)
 - **.../user - DELETE**
     >{  
-        "id": string,
+        "id": string,  
         "password": string  
     }
 
 ##### Login
 - **.../login - POST**
     >{  
-        "username": string,
+        "username": string,  
 	    "password": string  
     }
 
 ##### Change Password (authenticate)
 - **.../changePassword - POST**
     >{  
-        "password": string
+        "password": string  
         "newPassword": string  
     }
 
