@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node --files src/app/server.ts",
     "build": "tsc --build && prisma migrate deploy",
-    "start": "node dist/app/server.js"
+    "start": "node dist/src/app/server.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.19",
