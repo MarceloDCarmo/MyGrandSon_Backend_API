@@ -33,12 +33,22 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid or null user data sent",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
                                 }
                             }
                         }
@@ -86,12 +96,22 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid or null user data sent",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
                                 }
                             }
                         }
@@ -126,12 +146,22 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid or null user data sent",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
                                 }
                             }
                         }
@@ -181,12 +211,22 @@
                             }
                         }
                     },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
                     "422": {
                         "description": "Invalid or null user data sent",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
                                 }
                             }
                         }
@@ -297,7 +337,7 @@
                     }
                 }
             },
-            "ValidationErrorResponse": {
+            "ValidationEntityResponse": {
                 "type": "object",
                 "properties": {
                     "status": {
@@ -309,6 +349,21 @@
                         "type": "string",
                         "description": "Message describing the error",
                         "example": "Invalid username or password"
+                    }
+                }
+            },
+            "ValidationErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "Error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Message describing the error",
+                        "example": "Wrong username or password"
                     }
                 }
             },
