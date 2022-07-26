@@ -1,0 +1,395 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "MyGrandSon API",
+        "description": "API to serve MyGrandSon App. Visit https://github.com/MarceloDCarmo/MyGrandSon_Backend_API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "description": "Create an user",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "description": "User's info",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Succeed to create user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseCreateUser"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid or null user data sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an user",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "description": "User's info",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestCreateUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succeed to delete user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RequestDeleteUser"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorizationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid or null user data sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Authenticate user",
+                "tags": [
+                    "Authentication"
+                ],
+                "requestBody": {
+                    "description": "User's info",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestUserBody"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token for authentication",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid or null user data sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/changePassword": {
+            "post": {
+                "description": "Change user's password",
+                "tags": [
+                    "Configuration"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "User's info",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChangePasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Succeed to create user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChangePasswordResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized user",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthorizationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Data sent error related",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Invalid or null user data sent",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationEntityResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestUserBody": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "description": "Name to be used for authentication",
+                        "example": "Epaminondas Ramos"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "SuperSecretPassword@123"
+                    }
+                }
+            },
+            "ResponseCreateUser": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "success"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "Created user's id (UUID)",
+                        "format": "uuid"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Created user's username",
+                        "example": "Epaminondas Ramos"
+                    }
+                }
+            },
+            "RequestDeleteUser": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "Id of the user to be deleted",
+                        "format": "uuid"
+                    },
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "SuperSecretPassword@123"
+                    }
+                }
+            },
+            "TokenResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjoiZXhhbXBsZSB0b2tlbiJ9.Gf0vciXa6CO1yYOmOjjG37Uc5asHsvEd1Y9F4Kul9yg"
+                    },
+                    "expires_in": {
+                        "type": "string",
+                        "description": "Token's expire time",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "ChangePasswordRequest": {
+                "type": "object",
+                "properties": {
+                    "password": {
+                        "type": "string",
+                        "description": "User's password",
+                        "example": "SuperSecretPassword@123"
+                    },
+                    "newPassword": {
+                        "type": "string",
+                        "description": "New password",
+                        "example": "NewSuperSecretPassword@321"
+                    }
+                }
+            },
+            "ChangePasswordResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "success"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Success message",
+                        "example": "password changed"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "Logged user's id",
+                        "format": "uuid"
+                    }
+                }
+            },
+            "ValidationEntityResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "Error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Message describing the error",
+                        "example": "Invalid username or password"
+                    }
+                }
+            },
+            "ValidationErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "Error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Message describing the error",
+                        "example": "Wrong username or password"
+                    }
+                }
+            },
+            "AuthorizationErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Operation status",
+                        "example": "Error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Message describing the error",
+                        "example": "Invalid or expired token"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "description": "JWT Authentication",
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

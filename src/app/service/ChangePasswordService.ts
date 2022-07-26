@@ -1,26 +1,27 @@
 import { compare, hash } from 'bcryptjs'
+import { ValidationError } from '../errors/ValidationError'
 import { UserRepository } from '../repositories/UserRepository'
 
 export class ChangePasswordService {
     async execute(id: string, password: string, newPassword: string) {
-        if(!newPassword){
-            throw new Error("Invalid password")
+        if(!newPassword || !password || !id){
+            throw new ValidationError("Invalid or null fields", 422)            
         }
 
         const user = await UserRepository.findFirst({ where: { id } })
 
         if(!user){
-            throw new Error("User do not exists")
+            throw new ValidationError("User do not exists", 400)
         }
 
         const isPasswordValid = await compare(password, user.password)
 
         if(!isPasswordValid){
-            throw new Error("Wrong user or password");
+            throw new ValidationError("Wrong user or password", 400);
         }
 
         if(newPassword == password){
-            throw new Error("The new password must be different from the old one");
+            throw new ValidationError("The new password must be different from the old one", 400);
         }
 
         const hashedNewPassword = await hash(newPassword, parseInt(process.env.SALT!))
