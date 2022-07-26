@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec ts-node --files src/app/server.ts",
-    "build": "tsc --build && prisma migrate deploy",
+    "build": "tsc --build && prisma generate && prisma migrate deploy",
     "start": "node dist/src/app/server.js"
   },
   "devDependencies": {
