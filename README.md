@@ -9,6 +9,9 @@ MySQL 8.0
 
 ## Endpoints
 
+##### Swagger (docs)
+- **.../doc - GET**
+
 ##### Create User
 - **.../users - POST**
     >{  
@@ -17,7 +20,7 @@ MySQL 8.0
     }
 
 ##### Delete User (authenticate)
-- **.../user - DELETE**
+- **.../users - DELETE**
     >{  
         "id": string,  
         "password": string  
