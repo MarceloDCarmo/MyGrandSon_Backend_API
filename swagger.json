@@ -17,7 +17,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RequestCreateUser"
+                                "$ref": "#/components/schemas/RequestUserBody"
                             }
                         }
                     }
@@ -70,7 +70,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/RequestCreateUser"
+                                "$ref": "#/components/schemas/RequestUserBody"
                             }
                         }
                     }
